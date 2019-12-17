@@ -1,10 +1,8 @@
 package utility;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -15,8 +13,28 @@ import io.restassured.response.Response;
 
 public class ReadContentFromFile {
 
-	BufferedReader reader1;
-	BufferedReader reader2;
+	private BufferedReader reader1;
+	
+	private BufferedReader reader2;
+	
+	
+	public BufferedReader getReader1() {
+		return reader1;
+	}
+
+	public void setReader1(BufferedReader reader1) {
+		this.reader1 = reader1;
+	}
+
+	public BufferedReader getReader2() {
+		return reader2;
+	}
+
+	public void setReader2(BufferedReader reader2) {
+		this.reader2 = reader2;
+	}
+
+	
 
 	/**
 	 * 
