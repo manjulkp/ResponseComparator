@@ -1,6 +1,9 @@
 package steps;
 
 import java.io.IOException;
+
+import org.testng.Assert;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import utility.ReadContentFromFile;
@@ -13,14 +16,14 @@ public class CompareResponseBetweenTwoFiles {
 		try {
 			fileHandler.loadFile();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Then("compare tool prints the two response has matched or not")
 	public void compare_tool_prints_the_two_response_has_matched_or_not() throws IOException {
-		fileHandler.compareEachReponse(fileHandler.getReader1(), fileHandler.getReader2());
+		boolean finalCompare = fileHandler.compareEachReponse(fileHandler.getReader1(), fileHandler.getReader2());
+		Assert.assertTrue(finalCompare, "The comparision has failed please have a look" );
 	}
 
 }

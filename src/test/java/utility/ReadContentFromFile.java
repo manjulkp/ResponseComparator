@@ -51,16 +51,19 @@ public class ReadContentFromFile {
 	 * 
 	 * @param reader1
 	 * @param reader2
+	 * @return 
 	 * @throws IOException
 	 */
-	public void compareEachReponse(BufferedReader reader1, BufferedReader reader2) throws IOException {
+	public boolean compareEachReponse(BufferedReader reader1, BufferedReader reader2) throws IOException {
 		String line1 = reader1.readLine();
 		String line2 = reader2.readLine();
-		boolean areEqual = true;
+		boolean areEqual = false;
+		boolean finalStatus = true;
 		int lineNum = 1;
 		while (line1 != null || line2 != null) {
 			if (line1 == null || line1.trim().isEmpty() || line2 == null || line2.trim().isEmpty()) {
 				areEqual = false;
+				
 			} else {
 				Response res1 = null;
 				Response res2 = null;
@@ -71,29 +74,36 @@ public class ReadContentFromFile {
 					String jsonOfFile2 = new RestAssuredHelper().getResponseAsString(res2);
 					areEqual = getData(jsonOfFile1, jsonOfFile2);
 				} catch (IncorrectHttpProtocolException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			getStatusPrint(areEqual, line1, line2, lineNum);
+			if(!areEqual)
+			{
+				finalStatus = false;
+			}
+			areEqual=false;
 			line1 = reader1.readLine();
 			line2 = reader2.readLine();
 			lineNum++;
 		}
 		reader1.close();
 		reader2.close();
+		return finalStatus;
+		
 	}
 
 	/**
 	 * 
 	 * @param status
 	 * @param line1
-	 * @param value2
+	 * @param line2
 	 * @param lineNum
 	 */
-	private void getStatusPrint(boolean status, String line1, String value2, int lineNum) {
-		System.out.println(status ? line1 + "response is equal to response of " + value2
-				: line1 + "response is not equal to response of " + value2 + " at line number" + lineNum);
+	private void getStatusPrint(boolean status, String line1, String line2, int lineNum) {
+		System.out.println(status ? line1 + "response is equal to response of " + line2
+				: line1 + "response is not equal to response of " + line2 + " at line number" + lineNum);
+		System.out.println("\n");
 	}
 
 	/**
@@ -139,8 +149,7 @@ public class ReadContentFromFile {
 		JSONObject json = new JSONObject(s);
 		keyValueStore = ParseJson.getAllXpathAndValueFromJsonObject(json, keyValueStore, keyPath);
 		for (Map.Entry<String, String> map : keyValueStore.entrySet()) {
-			// System.out.println("The Key is " + map.getKey() + "-------------the value is
-			// " + map.getValue());
+			 System.out.println("The Key is " + map.getKey() + "-------------the value is" + map.getValue());
 		}
 		return keyValueStore;
 	}
