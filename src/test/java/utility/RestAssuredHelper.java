@@ -11,13 +11,18 @@ import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import io.restassured.specification.RequestSpecification;
 
+/**
+ * 
+ * Class to get the response using rest assured library
+ *
+ */
 public class RestAssuredHelper {
 
 	public static RequestSpecification Request;
 	public ResponseOptions<Response> res;
 	
 	/**
-	 * 
+	 * get the response by building the response using request specification builder class of Rest Assured
 	 * @param uriPattern
 	 * @return
 	 * @throws ClientProtocolException
@@ -39,7 +44,7 @@ public class RestAssuredHelper {
 	}
 	
 	/**
-	 * 
+	 * Store Response as String
 	 * @param r
 	 * @return
 	 */

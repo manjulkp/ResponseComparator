@@ -6,38 +6,48 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
-
 import org.json.JSONObject;
-
 import io.restassured.response.Response;
 
 public class ReadContentFromFile {
 
 	private BufferedReader reader1;
-	
 	private BufferedReader reader2;
-	
-	
+
+	/**
+	 * Getter method
+	 * @return
+	 */
 	public BufferedReader getReader1() {
 		return reader1;
 	}
 
+	/**
+	 * Setter Method
+	 * @param reader1
+	 */
 	public void setReader1(BufferedReader reader1) {
 		this.reader1 = reader1;
 	}
 
+	/**
+	 * Getter method
+	 * @return
+	 */
 	public BufferedReader getReader2() {
 		return reader2;
 	}
-
+    
+	/**
+	 * Setter method
+	 * @param reader2
+	 */
 	public void setReader2(BufferedReader reader2) {
 		this.reader2 = reader2;
 	}
 
-	
-
 	/**
-	 * 
+	 * Load the file to read
 	 * @throws IOException
 	 */
 	public void loadFile() throws IOException {
@@ -48,10 +58,10 @@ public class ReadContentFromFile {
 	}
 
 	/**
-	 * 
+	 * Compare the response
 	 * @param reader1
 	 * @param reader2
-	 * @return 
+	 * @return
 	 * @throws IOException
 	 */
 	public boolean compareEachReponse(BufferedReader reader1, BufferedReader reader2) throws IOException {
@@ -63,7 +73,7 @@ public class ReadContentFromFile {
 		while (line1 != null || line2 != null) {
 			if (line1 == null || line1.trim().isEmpty() || line2 == null || line2.trim().isEmpty()) {
 				areEqual = false;
-				
+
 			} else {
 				Response res1 = null;
 				Response res2 = null;
@@ -78,11 +88,10 @@ public class ReadContentFromFile {
 				}
 			}
 			getStatusPrint(areEqual, line1, line2, lineNum);
-			if(!areEqual)
-			{
+			if (!areEqual) {
 				finalStatus = false;
 			}
-			areEqual=false;
+			areEqual = false;
 			line1 = reader1.readLine();
 			line2 = reader2.readLine();
 			lineNum++;
@@ -90,11 +99,11 @@ public class ReadContentFromFile {
 		reader1.close();
 		reader2.close();
 		return finalStatus;
-		
+
 	}
 
 	/**
-	 * 
+	 * Print the status after compare
 	 * @param status
 	 * @param line1
 	 * @param line2
@@ -107,7 +116,7 @@ public class ReadContentFromFile {
 	}
 
 	/**
-	 * 
+	 * Get the Json in form of Map
 	 * @param json1
 	 * @param json2
 	 * @return
@@ -119,7 +128,7 @@ public class ReadContentFromFile {
 	}
 
 	/**
-	 * 
+	 * Compare the map
 	 * @param map1
 	 * @param map2
 	 * @return
@@ -139,7 +148,7 @@ public class ReadContentFromFile {
 	}
 
 	/**
-	 * 
+	 * Get all the xpath
 	 * @param s
 	 * @return
 	 */
@@ -149,7 +158,8 @@ public class ReadContentFromFile {
 		JSONObject json = new JSONObject(s);
 		keyValueStore = ParseJson.getAllXpathAndValueFromJsonObject(json, keyValueStore, keyPath);
 		for (Map.Entry<String, String> map : keyValueStore.entrySet()) {
-			 System.out.println("The Key is " + map.getKey() + "-------------the value is" + map.getValue());
+			// System.out.println("The Key is " + map.getKey() + "-------------the value is"
+			// + map.getValue());
 		}
 		return keyValueStore;
 	}

@@ -6,10 +6,16 @@ import java.util.Stack;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * 
+ * For a given json object all the xpath are extract with key and value stored and returned as Map
+ * Nested are taken care
+ *
+ */
 public class ParseJson {
 	
 	/**
-	 * 
+	 * Get all the Xpath and returned as Map
 	 * @param json
 	 * @param keyValueStore
 	 * @param keyPath
@@ -46,7 +52,7 @@ public class ParseJson {
 	}
 
 	/**
-	 * 
+	 * For JsonArray ,we are find the paths
 	 * @param object
 	 * @param keyPath
 	 * @param keyValueStore

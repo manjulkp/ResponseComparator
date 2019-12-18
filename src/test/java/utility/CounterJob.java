@@ -1,6 +1,10 @@
 package utility;
 
-
+/**
+ * 
+ * Test code to implement parallel thread need some time to complete 
+ *
+ */
 public class CounterJob implements Runnable{
 
 int count=0;

@@ -7,6 +7,11 @@ import org.testng.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import utility.ReadContentFromFile;
+/**
+ * 
+ * Step Definition glue of feature file
+ *
+ */
 
 public class CompareResponseBetweenTwoFiles {
 	ReadContentFromFile fileHandler = new ReadContentFromFile();
