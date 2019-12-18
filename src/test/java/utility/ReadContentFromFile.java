@@ -158,8 +158,8 @@ public class ReadContentFromFile {
 		JSONObject json = new JSONObject(s);
 		keyValueStore = ParseJson.getAllXpathAndValueFromJsonObject(json, keyValueStore, keyPath);
 		for (Map.Entry<String, String> map : keyValueStore.entrySet()) {
-			// System.out.println("The Key is " + map.getKey() + "-------------the value is"
-			// + map.getValue());
+			 System.out.println("The Key is " + map.getKey() + "-------------the value is"
+			 + map.getValue());
 		}
 		return keyValueStore;
 	}
