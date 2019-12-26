@@ -10,19 +10,28 @@ Used : Java,TestNg,Cucumber,Maven,RestAssured
 CommandLine way to execute the code is -----------mvn verify
 
 Design Pattern used :
-1.Used Cucumber feature file to describe the functionality of the test case (only one test case at the moment )
+1.Used Cucumber feature file to describe the functionality of the test case (only one test case at the moment
+
 2.Steps Package define the under lying java glue for the feature file 
-3.TestRunner converted to testng xml that help for the execution of test cases 
+
+3.TestRunner converted to testng xml that help for the execution of test cases
+
 This holds below information 
 -features file and their binding step definition location 
+
 -location to store the result in html
+
 -activity that needs to executed based on the testng annotation
+
 NOTE: The setup and teardown is not implemented in TestRunner
 
 
 4.POM.xml stores all the dependencies that are need for the project .
+
 5.The files are stored under /src/test/resources/properties
+
 6.package utility; contains the below class 
+
 -IncorrectHttpProtocolException
 -ParseJson
 -ReadContentFromFile
